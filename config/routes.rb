@@ -12,6 +12,14 @@ Rails.application.routes.draw do
   resources :users, :only => [:new, :create]
   resources :sessions, :only => [:new, :create, :destroy]
 
+  namespace :api do
+    namespace :v1 do
+      resources :users
+    end
+  end
+
+  get '*path', :to => 'welcome#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

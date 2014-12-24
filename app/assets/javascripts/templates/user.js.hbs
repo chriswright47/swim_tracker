@@ -1,0 +1,11 @@
+<div class="user">
+  <h1>
+    {{model.fullName}}
+    {{#link-to 'user.edit' model classNames="edit"}}
+      Edit
+    {{/link-to}}
+  </h1>
+  <p>Name: {{model.fullName}}</p>
+  <p>Email: {{model.email}}</p>
+</div>
+{{outlet}}

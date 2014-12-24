@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'User' do
-  subject { User.create(:email => 'test@example.com', :password => 'password') }
+RSpec.describe User, :type => :model do
+  subject { create :user }
   describe '.authenticate' do
     it 'raises auth error if email not found' do
       expect{ User.authenticate('non-existent-email', 'password') }.
@@ -46,7 +46,7 @@ RSpec.describe 'User' do
   describe '#display_name' do
     it 'returns email if no name present' do
       allow(subject).to receive(:full_name).and_return('')
-      expect(subject.display_name).to eq 'test@example.com'
+      expect(subject.display_name).to eq subject.email
     end
 
     it 'returns full_name if present' do
@@ -56,7 +56,7 @@ RSpec.describe 'User' do
   end
 
   describe '#encrypt_password' do
-    let(:user) { User.new }
+    let(:user) { build :user, :password => nil }
 
     it 'does nothing if no password present' do
       user.encrypt_password

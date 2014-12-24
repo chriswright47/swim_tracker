@@ -1,0 +1,24 @@
+<div>
+  <h1>{{model.fullName}}</h1>
+
+  <form>
+    <fieldset>
+      <div>
+        <label>First name:</label>
+        {{view Ember.TextField valueBinding="model.firstName"}}
+      </div>
+      <div>
+        <label>Last name:</label>
+        {{view Ember.TextField valueBinding="model.lastName"}}
+      </div>
+      <div>
+        <label>Email:</label>
+        {{view Ember.TextField valueBinding="model.email"}}
+      </div>
+    </fieldset>
+    <fieldset class="actions">
+      <input type="submit" value="Save changes" {{action saveChanges}}>
+      <a href="#" {{action cancel}}>Cancel</a>
+    </fieldset>
+  </form>
+</div>
