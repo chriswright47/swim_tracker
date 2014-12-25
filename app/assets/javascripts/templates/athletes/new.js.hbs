@@ -17,7 +17,7 @@
       </div>
       <div>
         <label>Gender:</label>
-        {{view Ember.Select content=App.Athlete.GENDER_LIST value="fields.gender" prompt="select a gender..."}}
+        {{view Ember.Select content=App.Athlete.GENDER_LIST valueBinding="fields.gender" prompt="select a gender..."}}
       </div>
       <div>
         <label>Status:</label>
