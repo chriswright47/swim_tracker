@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  # validates_presence_of :password, :if => Proc.new { |u| u.password.present? }
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+  validates_uniqueness_of :email, :if => Proc.new { |u| u.email.present? }
 
   class << self
     def authenticate(email, password)
@@ -27,10 +28,6 @@ class User < ActiveRecord::Base
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
-  end
-
-  def display_name
-    full_name.presence || email
   end
 
   def full_name

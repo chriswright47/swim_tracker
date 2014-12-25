@@ -5,8 +5,9 @@ App.Router.reopen({
 });
 
 App.Router.map(function() {
-  this.resource('users', { path: '/' }, function() {
-    this.resource('user', { path: '/users/:id' }, function() {
+  this.resource('athletes', { path: '/athletes' }, function() {
+    this.route('new');
+    this.resource('athlete', { path: '/:id' }, function() {
       this.route('edit');
     });
   });

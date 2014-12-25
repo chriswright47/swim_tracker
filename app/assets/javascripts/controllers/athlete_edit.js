@@ -1,15 +1,15 @@
-App.UserEditController = Ember.ObjectController.extend({
+App.AthleteEditController = Ember.ObjectController.extend({
   actions: {
     saveChanges: function() {
       var self = this;
       this.get('model').save().then(function() {
-        self.transitionToRoute('user');
+        self.transitionToRoute('athlete');
       });
     },
 
     cancel: function() {
       this.get('model').rollback();
-      this.transitionToRoute('user');
+      this.transitionToRoute('athlete');
     }
-  }
+  },
 });

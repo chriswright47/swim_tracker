@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="athletes col-xs-6">
+    {{#link-to 'athletes' tagName="h1"}}Athletes{{/link-to}}
+    {{#link-to 'athletes.new' tagName="h2"}}New athlete{{/link-to}}
+      <ul class="list-unstyled">
+        {{#each athlete in controller}}
+          {{#link-to 'athlete' athlete tagName="li" class="btn"}}
+            {{athlete.fullName}}
+          {{/link-to}}
+          <br/>
+        {{/each}}
+      </ul>
+  </div>
+  <div class="col-xs-6">
+    {{outlet}}
+  </div>
+</div>

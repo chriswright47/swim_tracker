@@ -1,0 +1,28 @@
+<div>
+  <h1>{{model.fullName}}</h1>
+
+  <form>
+    <fieldset>
+      <div>
+        <label>First name:</label>
+        {{view Ember.TextField valueBinding="model.firstName"}}
+      </div>
+      <div>
+        <label>Last name:</label>
+        {{view Ember.TextField valueBinding="model.lastName"}}
+      </div>
+      <div>
+        <label>Gender:</label>
+        {{view Ember.Select content=App.Athlete.GENDER_LIST valueBinding="model.gender"}}
+      </div>
+      <div>
+        <label>Status:</label>
+        {{view Ember.Select content=App.Athlete.STATUS_LIST valueBinding="model.status"}}
+      </div>
+    </fieldset>
+    <fieldset class="actions">
+      <input type="submit" class="btn btn-sm btn-success" value="Save changes" {{action saveChanges}}>
+      <button class="btn btn-sm" {{action cancel}}>Cancel</button>
+    </fieldset>
+  </form>
+</div>

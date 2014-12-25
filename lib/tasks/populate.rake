@@ -1,15 +1,14 @@
 namespace :db do
   task :populate => :environment do
 
-    User.destroy_all
+    Athlete.destroy_all
 
     20.times do
-      User.create(
+      Athlete.create(
         :first_name => Faker::Name.first_name,
         :last_name  => Faker::Name.last_name,
-        :email      => Faker::Internet.email,
-        :password => 'password',
-        :password_confirmation => 'password'
+        :gender => ['male','female'].sample,
+        :status => 'active'
       )
     end
   end

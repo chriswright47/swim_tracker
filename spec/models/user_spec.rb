@@ -43,18 +43,6 @@ RSpec.describe User, :type => :model do
     end
   end
 
-  describe '#display_name' do
-    it 'returns email if no name present' do
-      allow(subject).to receive(:full_name).and_return('')
-      expect(subject.display_name).to eq subject.email
-    end
-
-    it 'returns full_name if present' do
-      allow(subject).to receive(:full_name).and_return(:foo)
-      expect(subject.display_name).to eq :foo
-    end
-  end
-
   describe '#encrypt_password' do
     let(:user) { build :user, :password => nil }
 

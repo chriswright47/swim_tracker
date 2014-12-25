@@ -1,0 +1,13 @@
+{{#unless isEditing}}
+<div class="athlete">
+  <h1>
+    {{model.fullName}}
+    {{#link-to 'athlete.edit' model classNames="edit"}}
+      Edit
+    {{/link-to}}
+  </h1>
+  <p>Name: {{model.fullName}}</p>
+  <button class="btn btn-sm btn-danger" {{action delete}}>Delete</button>
+</div>
+{{/unless}}
+{{outlet}}
