@@ -7,9 +7,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   validates_confirmation_of :password
-  # validates_presence_of :password, :if => Proc.new { |u| u.password.present? }
-  validates_presence_of :first_name
-  validates_presence_of :last_name
+  validates_presence_of :password, :if => Proc.new { |u| u.password.present? }
   validates_uniqueness_of :email, :if => Proc.new { |u| u.email.present? }
 
   class << self

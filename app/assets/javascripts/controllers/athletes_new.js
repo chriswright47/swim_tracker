@@ -11,6 +11,9 @@ App.AthletesNewController = Ember.Controller.extend({
       } else {
         this.set('showError', true);
       }
+    },
+    cancel: function() {
+      this.transitionToRoute('athletes');
     }
   }
 });

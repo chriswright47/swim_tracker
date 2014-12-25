@@ -1,9 +1,12 @@
 <div class="row">
   <div class="athletes col-xs-6">
     {{#link-to 'athletes' tagName="h1"}}Athletes{{/link-to}}
-    {{#link-to 'athletes.new' tagName="h2"}}New athlete{{/link-to}}
+    {{#link-to 'athletes.new' tagName="h2" class="btn btn-info btn-sm"}}New athlete{{/link-to}}
+    <p>
+      {{view Ember.TextField value=search placeholder="search" class="search"}}
+    </p>
       <ul class="list-unstyled">
-        {{#each athlete in controller}}
+        {{#each athlete in athletes}}
           {{#link-to 'athlete' athlete tagName="li" class="btn"}}
             {{athlete.fullName}}
           {{/link-to}}
