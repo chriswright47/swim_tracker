@@ -8,6 +8,7 @@ class Athlete < ActiveRecord::Base
   validates_presence_of :status
   validates_presence_of :gender
 
+  has_many :swims
 
   def full_name
     format('%{first} %{last}', :first => first_name, :last => last_name).strip
