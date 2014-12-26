@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20141225222831) do
     t.string   "stroke"
     t.integer  "distance"
     t.boolean  "relay",      default: false, null: false
+    t.string   "gender"
+    t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,7 +39,6 @@ ActiveRecord::Schema.define(version: 20141225222831) do
     t.integer  "meet_id"
     t.integer  "event_id"
     t.integer  "entry_limit"
-    t.string   "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

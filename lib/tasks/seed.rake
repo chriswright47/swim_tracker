@@ -1,40 +1,14 @@
 namespace :db do
   task :seed_events => :environment do
-
-    [50, 100, 200, 500].each do |distance|
-      Event.create(
-        :stroke   => 'freestyle',
-        :distance => distance,
-        :relay    => false
-      )
+    women_events = YAML.load_file(Rails.root.join('lib', 'fixtures', 'women_events.yml'))
+    men_events = women_events.map do |e|
+      e.merge('number' => e['number'] + 1, 'gender' => 'men')
     end
 
-    %w(breastroke butterfly backstroke).each do |stroke|
-      Event.create(
-        :stroke   => stroke,
-        :distance => 100,
-        :relay    => false
-      )
+    events = women_events.zip(men_events)
+
+    events.each do |event_data|
+      Event.create(event_data)
     end
-
-    [200, 400].each do |distance|
-      Event.create(
-        :stroke   => 'freestyle',
-        :distance => distance,
-        :relay => true
-      )
-    end
-
-    Event.create(
-      :stroke   => 'individual_medley',
-      :distance => 200,
-      :relay => false
-    )
-
-    Event.create(
-      :stroke   => 'medley',
-      :distance => 200,
-      :relay => true
-    )
   end
 end

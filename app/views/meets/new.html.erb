@@ -1,0 +1,12 @@
+<h1>New Meet</h1>
+
+<%= simple_form_for @meet do |f| %>
+  <%= f.input :opponent %>
+  <%= f.input :competition_date, :as => :date %>
+  <div class="input entry_limit">
+    <label for="entry_limit">Entry limit per heat</label>
+    <input id="entry_limit" name="meet[entry_limit]" type="number" value="3">
+  </div>
+  <%= f.button :submit, 'Create meet', :class => 'btn btn-info' %>
+  <%= link_to 'Cancel', meets_path, :class => 'btn btn-danger' %>
+<% end %>

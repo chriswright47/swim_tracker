@@ -4,7 +4,6 @@ class CreateHeats < ActiveRecord::Migration
       t.integer :meet_id
       t.integer :event_id
       t.integer :entry_limit
-      t.string  :gender
 
       t.timestamps
 

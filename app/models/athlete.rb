@@ -1,10 +1,10 @@
 class Athlete < ActiveRecord::Base
-  scope :active,       -> { where(:status => 'active')}
-  scope :active_men,   -> { active.where(:gender => 'male')}
-  scope :active_women,   -> { active.where(:gender => 'female')}
+  scope :active,       -> { where(:status => 'active').order(:first_name, :last_name)}
+  scope :active_men,   -> { active.where(:gender => 'men')}
+  scope :active_women, -> { active.where(:gender => 'women')}
 
   STATUS_LIST = ['active', 'inactive']
-  GENDER_LIST = ['female', 'male']
+  GENDER_LIST = ['women', 'men']
 
   validates_presence_of :first_name
   validates_presence_of :last_name

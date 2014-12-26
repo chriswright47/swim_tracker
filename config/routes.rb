@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
   resources :athletes
-  resources :meets
+  resources :meets, :except => [:edit, :update]
   resources :heats
-  resources :events
 end

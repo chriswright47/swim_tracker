@@ -1,42 +1,39 @@
 class MeetsController < ApplicationController
-  respond_to :json
-
   def index
-    respond_with Meet.all
+    @meets = Meet.all
   end
 
   def show
-    respond_with meet
+    meet
+  end
+
+  def new
+    @meet = Meet.new
   end
 
   def create
-    new_meet = Meet.create(meet_params)
+    @meet = Meet.create(meet_params)
 
+    # create a heat for every event
     Event.all.each do |event|
-      ['male', 'female'].each do |gender|
-        new_meet.heats.create(
-          :event => event,
-          :entry_limit => params[:entry_limit] || 3,
-          :gender => gender
-        )
-      end
+      @meet.heats.create(
+        :event => event,
+        :entry_limit => params[:meet][:entry_limit] || 3
+      )
     end
+    binding.pry
 
-    respond_with :api, :v1, new_meet
-  end
-
-  def update
-    respond_with meet.update(meet_params)
+    redirect_to meet_path(@meet)
   end
 
   def destroy
-    respond_with meet.destroy
+    fail 'pending'
   end
 
   private
 
   def meet
-    Meet.find(params[:id])
+    @meet ||= Meet.find(params[:id])
   end
 
   def meet_params

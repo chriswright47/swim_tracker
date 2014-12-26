@@ -1,0 +1,13 @@
+<div class="row">
+  <%= link_to 'Create a new meet', new_meet_path, {:class => 'btn btn-info'} %>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-unstyled">
+      <% @meets.each do |meet| %>
+        <li>
+          <%= link_to meet.opponent.titleize, meet %>
+        </li>
+      <% end %>
+    </ul>
+</div>

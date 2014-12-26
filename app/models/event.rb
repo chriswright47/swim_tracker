@@ -1,9 +1,12 @@
 class Event < ActiveRecord::Base
   has_many :heats
 
-  def name
+  default_scope { order(:number) }
+
+  def display_name
     format(
-      '%{distance} %{stroke} %{relay}',
+      '%{gender} %{distance} %{stroke} %{relay}',
+      :gender => gender,
       :distance => distance,
       :stroke => stroke,
       :relay => relay ? 'relay' : ''
