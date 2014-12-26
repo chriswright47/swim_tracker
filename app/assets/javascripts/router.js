@@ -11,4 +11,11 @@ App.Router.map(function() {
       this.route('edit');
     });
   });
+
+  this.resource('meets', { path: '/meets' }, function() {
+    this.route('new');
+    this.resource('meet', { path: '/:id' }, function() {
+      this.route('edit');
+    });
+  });
 });

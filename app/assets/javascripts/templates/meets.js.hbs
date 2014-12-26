@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="meets col-xs-6">
+    {{#link-to 'meets' tagName="h1"}}Meets{{/link-to}}
+    {{#link-to 'meets.new' tagName="h2" class="btn btn-info btn-sm"}}New meet{{/link-to}}
+      <ul class="list-unstyled">
+        {{#each meet in controller}}
+          {{#link-to 'meet' meet tagName="li" class="btn"}}
+            {{meet.opponent}}
+          {{/link-to}} => heats: {{meet.heats.length}}
+          <br/>
+        {{/each}}
+      </ul>
+  </div>
+  <div class="col-xs-6">
+    {{outlet}}
+  </div>
+</div>

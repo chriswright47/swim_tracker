@@ -1,5 +1,5 @@
 namespace :db do
-  task :populate => :environment do
+  task :populate_fake_athletes => :environment do
 
     Athlete.destroy_all
 
