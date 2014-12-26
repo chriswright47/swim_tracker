@@ -7,9 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <%= yield %>
-
-  <div id='ember-app'></div>
+  <div class="container-fluid">
+    <%= render '/nav_bar' %>
+    <%= render '/messages' %>
+    <%= yield %>
+  </div>
 </body>
 </html>

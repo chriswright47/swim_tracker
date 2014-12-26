@@ -1,0 +1,9 @@
+<div class="row">
+  <ul class="list-unstyled">
+    <% flash.each do |key, msg| %>
+    <li class="alert alert-<%= key.to_s %>">
+      <%= msg %>
+    </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,10 @@
+<h1>New Athlete</h1>
+
+<%= simple_form_for @athlete do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :status, :collection => f.object.class::STATUS_LIST, :include_blank => false %>
+  <%= f.input :gender, :collection => f.object.class::GENDER_LIST, :prompt => 'select a gender...' %>
+  <%= f.button :submit, :class => 'btn btn-info' %>
+  <%= link_to 'Cancel', athletes_path, :class => 'btn btn-danger' %>
+<% end %>
