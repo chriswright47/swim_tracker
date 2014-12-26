@@ -44,10 +44,6 @@ gem 'twitter-bootstrap-rails'
 
 gem 'simple_form'
 
-gem 'ember-rails'
-gem 'ember-source', '~> 1.8.1'
-# gem 'emblem-rails'
-
 # Use unicorn as the app server
 # gem 'unicorn'
 
