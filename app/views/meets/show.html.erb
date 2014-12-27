@@ -1,20 +1,23 @@
 <h1><%= @meet.competition_date.to_s(:db) %> meet against <%= @meet.opponent.titleize %></h1>
-<div class="col-xs-6">
-  <ul class="list-unstyled">
-    <% @meet.heats.men.each do |heat| %>
-      <li>
-        <%= render 'heats/details', :heat => heat %>
-      </li>
-    <% end %>
-  </ul>
+
+<div class="row">
+  <div class="edit-heat-view"></div>
 </div>
 
-<div class="col-xs-6">
-  <ul class="list-unstyled">
+<div class="row">
+  <div class="list-group col-xs-6">
     <% @meet.heats.women.each do |heat| %>
-      <li>
+      <div id="heat-<%= heat.id %>-details">
         <%= render 'heats/details', :heat => heat %>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
+  <div class="list-group col-xs-6">
+    <% @meet.heats.men.each do |heat| %>
+      <div id="heat-<%= heat.id %>-details">
+        <%= render 'heats/details', :heat => heat %>
+      </div>
+    <% end %>
+  </div>
 </div>

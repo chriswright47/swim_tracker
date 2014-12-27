@@ -12,4 +12,8 @@ class Event < ActiveRecord::Base
       :relay => relay ? 'relay' : ''
     ).strip.titleize
   end
+
+  def eligible_athletes
+    Athlete.send(:"active_#{gender}")
+  end
 end

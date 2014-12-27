@@ -12,8 +12,18 @@ class Athlete < ActiveRecord::Base
   validates_presence_of :gender
 
   has_many :swims
+  has_many :heats, :through => :swims
+  has_many :events, :through => :heats
 
   def full_name
     format('%{first} %{last}', :first => first_name, :last => last_name).strip
+  end
+
+  def display_entry_count(meet)
+    individual, relay = [0, 0]
+    self.heats.where(:meet_id => meet.id).each do |h|
+      h.event.relay ? relay += 1 : individual += 1
+    end
+    format('individual: %s, relay: %s', individual, relay)
   end
 end

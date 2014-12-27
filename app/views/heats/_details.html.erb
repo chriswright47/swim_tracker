@@ -1,2 +1,19 @@
-<%= heat.display_name %>
+<div class="list-group-item heat-item" data-heat-id="<%= heat.id %>">
+  <div class="row">
+    <h4 class="list-group-item-heading col-xs-9"><%= heat.display_name %></h4>
+    <h4 class="list-group-item-heading col-xs-3">Times</h4>
+  </div>
 
+  <% if heat.swims.present? %>
+    <% heat.swims.each do |swim| %>
+      <div class="row list-group-item-text">
+        <span class="col-xs-8 col-xs-offset-1"><%= swim.display_athlete %></span>
+        <span class="col-xs-3"><%= swim.display_final_time %></span>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="row list-group-item-text">
+      <span class="col-xs-11 col-xs-offset-1"><em>no entries</em></span>
+    </div>
+  <% end %>
+</div>

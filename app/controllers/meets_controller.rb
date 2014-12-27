@@ -16,12 +16,12 @@ class MeetsController < ApplicationController
 
     # create a heat for every event
     Event.all.each do |event|
+      entry_limit = (params[:meet][:entry_limit] || 3).to_i
       @meet.heats.create(
         :event => event,
-        :entry_limit => params[:meet][:entry_limit] || 3
+        :entry_limit => event.relay ? entry_limit * 4 : entry_limit
       )
     end
-    binding.pry
 
     redirect_to meet_path(@meet)
   end
@@ -39,4 +39,5 @@ class MeetsController < ApplicationController
   def meet_params
     params.require(:meet).permit(:opponent, :competition_date)
   end
+
 end

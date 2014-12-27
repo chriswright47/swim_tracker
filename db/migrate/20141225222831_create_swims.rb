@@ -3,7 +3,9 @@ class CreateSwims < ActiveRecord::Migration
     create_table :swims do |t|
       t.integer :athlete_id
       t.integer :heat_id
-      t.boolean :realy_start
+      t.boolean :relay_start
+      t.integer :final_time_ms
+      t.text    :notes
 
       t.timestamps
 

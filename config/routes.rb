@@ -13,5 +13,5 @@ Rails.application.routes.draw do
 
   resources :athletes
   resources :meets, :except => [:edit, :update]
-  resources :heats
+  resources :heats, :only => [:show, :update]
 end

@@ -7,7 +7,7 @@ namespace :db do
       Athlete.create(
         :first_name => Faker::Name.first_name,
         :last_name  => Faker::Name.last_name,
-        :gender => ['male','female'].sample,
+        :gender => ['men','women'].sample,
         :status => 'active'
       )
     end
