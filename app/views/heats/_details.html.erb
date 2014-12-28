@@ -8,7 +8,7 @@
     <% heat.swims.each do |swim| %>
       <div class="row list-group-item-text">
         <span class="col-xs-8 col-xs-offset-1"><%= swim.display_athlete %></span>
-        <span class="col-xs-3"><%= swim.display_final_time %></span>
+        <span class="col-xs-3"><%= swim.display_final_time || "no_time" %></span>
       </div>
     <% end %>
   <% else %>

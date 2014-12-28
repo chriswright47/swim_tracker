@@ -1,11 +1,11 @@
-<h1><%= @meet.competition_date.to_s(:db) %> meet against <%= @meet.opponent.titleize %></h1>
+<h1><%= @meet.title %></h1>
 
 <div class="row">
   <div class="edit-heat-view"></div>
 </div>
 
 <div class="row">
-  <div class="list-group col-xs-6">
+  <div class="list-group col-sm-6 col-xs-12">
     <% @meet.heats.women.each do |heat| %>
       <div id="heat-<%= heat.id %>-details">
         <%= render 'heats/details', :heat => heat %>
@@ -13,7 +13,7 @@
     <% end %>
   </div>
 
-  <div class="list-group col-xs-6">
+  <div class="list-group col-sm-6 col-xs-12">
     <% @meet.heats.men.each do |heat| %>
       <div id="heat-<%= heat.id %>-details">
         <%= render 'heats/details', :heat => heat %>

@@ -4,4 +4,8 @@ class Meet < ActiveRecord::Base
 
   validates_presence_of :opponent
   validates_presence_of :competition_date
+
+  def title
+    format('%s %s', competition_date.to_s(:db), opponent.titleize)
+  end
 end

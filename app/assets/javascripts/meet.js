@@ -11,6 +11,10 @@ $(function() {
       url: heatPath
     }).done(function(response) {
       $('.edit-heat-view').html(response.attachmentPartial);
+      $('.swimmer-select').select2({
+        placeholder: 'Select an athlete...',
+        allowClear: true
+      });
     });
   });
 });

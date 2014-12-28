@@ -41,6 +41,7 @@ gem 'less-rails'
 gem 'rails_12factor'
 
 gem 'twitter-bootstrap-rails'
+gem 'select2-rails'
 
 gem 'simple_form'
 

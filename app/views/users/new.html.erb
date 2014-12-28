@@ -1,10 +1,11 @@
 <h1>Sign up</h1>
-
-<%= simple_form_for @user do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :email, :required => true %>
-  <%= f.input :password, :required => true %>
-  <%= f.input :password_confirmation, :required => true, :label =>'Confirm password' %>
-  <%= f.button :submit %>
-<% end %>
+<div class='col-xs-6'>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :first_name, :wrapper_html => {:class => "form-group"}, :input_html => {:class => "form-control", :placeholder => "First name"} %>
+    <%= f.input :last_name, :wrapper_html => {:class => "form-group"}, :input_html => {:class => "form-control", :placeholder => "Last name"} %>
+    <%= f.input :email, :required => true, :wrapper_html => {:class => "form-group"}, :input_html => {:class => "form-control", :placeholder => "email@example.com"} %>
+    <%= f.input :password, :required => true, :label => 'Password', :wrapper_html => {:class => "form-group"}, :input_html => {:class => "form-control"} %>
+    <%= f.input :password_confirmation, :required => true, :label =>'Confirm password', :wrapper_html => {:class => "form-group"}, :input_html => {:class => "form-control"} %>
+    <%= f.button :submit, :class => "btn btn-info" %>
+  <% end %>
+</div>
