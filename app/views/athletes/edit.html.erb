@@ -1,7 +1,9 @@
 <h1>Edit Athlete</h1>
 
-<%= simple_form_for @athlete do |f| %>
-  <%= render 'form_fields', :f => f %>
-  <%= f.button :submit, 'Save changes', :class => 'btn btn-info' %>
-  <%= link_to 'Cancel changes', @athlete, :class => 'btn btn-danger' %>
-<% end %>
+<div class="col-xs-12 col-sm-6">
+  <%= simple_form_for @athlete do |f| %>
+    <%= render 'form_fields', :f => f %>
+    <%= f.button :submit, 'Save changes', :class => 'btn btn-info' %>
+    <%= link_to 'Cancel changes', @athlete, :class => 'btn btn-danger' %>
+  <% end %>
+</div>
