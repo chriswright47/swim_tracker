@@ -19,11 +19,16 @@ class Athlete < ActiveRecord::Base
     format('%{first} %{last}', :first => first_name, :last => last_name).strip
   end
 
-  def display_entry_count(meet)
+  def entry_counts_for_meet(meet)
     individual, relay = [0, 0]
     self.heats.where(:meet_id => meet.id).each do |h|
       h.event.relay ? relay += 1 : individual += 1
     end
-    format('individual: %s, relay: %s', individual, relay)
+    { :individual => individual, :relay => relay }
+  end
+
+  def best_swim_for_event(event)
+    eligible_heat_ids = event.related_heats.map(&:id)
+    self.swims.where(:heat_id => eligible_heat_ids).order(:final_time_ms).first
   end
 end

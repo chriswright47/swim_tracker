@@ -1,10 +1,10 @@
-<div class="col-sm-8 col-xs-12 heat-edit-form">
+<div class="col-sm-6 col-xs-12 heat-edit-form">
   <h4><%= event.display_name %></h4>
 
   <%= simple_form_for(heat, :method => :put) do |f| %>
     <div class="row">
-      <div class="col-sm-5 col-xs-8">Athlete</div>
-      <div class="col-sm-3 col-xs-4">Time</div>
+      <div class="col-xs-8">Athlete</div>
+      <div class="col-xs-4">Time</div>
     </div>
     <% heat.entry_limit.times do |entry_index| %>
       <% if entry_index % 4 == 0%>
@@ -15,11 +15,11 @@
           :collection => athletes, :label_method => :full_name, :value_method => :id,
           :selected => f.object.swims[entry_index].try(:athlete_id), :include_blank => true,
           :input_html => {:class => 'swimmer-select'},
-          :wrapper_html => {:class => 'col-sm-5 col-xs-8'}
+          :wrapper_html => {:class => 'col-xs-8'}
         %>
         <%= f.input "swims[#{entry_index}][display_final_time]", :label => false,
           :input_html => {:value => f.object.swims[entry_index].try(:display_final_time), :placeholder => '1:51.51', :class => "form-control"},
-          :wrapper_html => {:class => 'col-sm-3 col-xs-4'}
+          :wrapper_html => {:class => 'col-xs-4'}
         %>
       </div>
     <% end %>
@@ -31,13 +31,22 @@
 </div>
 
 
-<div class="col-sm-4 col-xs-12 eligible-athelete-list">
+<div class="col-sm-6 col-xs-12 eligible-athelete-list">
   <h4>Eligible swimmers:</h4>
-  <ul class="list-unstyled">
+  <table class="table table-condensed table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Individual</th>
+      <th>Relay</th>
+      <th>Best time</th>
+    </tr>
     <% athletes.each do |athlete| %>
-      <li>
-        <span><%= athlete.full_name %> - <%= athlete.display_entry_count(heat.meet) %></span>
-      </li>
+      <tr>
+        <td><%= athlete.full_name %></td>
+        <td><%= athlete.entry_counts_for_meet(heat.meet).fetch(:individual) %></td>
+        <td><%= athlete.entry_counts_for_meet(heat.meet).fetch(:relay) %></td>
+        <td><%= athlete.best_swim_for_event(heat.event).try(:display_final_time) %></td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 </div>
