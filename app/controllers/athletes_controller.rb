@@ -1,4 +1,6 @@
 class AthletesController < ApplicationController
+  before_action :authenticate
+
   def index
     @men = Athlete.active_men
     @women = Athlete.active_women

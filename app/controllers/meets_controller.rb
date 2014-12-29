@@ -1,4 +1,6 @@
 class MeetsController < ApplicationController
+  before_action :authenticate
+
   def index
     @meets = Meet.all
   end

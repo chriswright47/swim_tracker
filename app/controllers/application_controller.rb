@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
   def user_id
     session[:user_id]
   end
+
+  def authenticate
+    redirect_to log_in_path unless current_user
+  end
 end

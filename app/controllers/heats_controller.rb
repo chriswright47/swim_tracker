@@ -1,4 +1,6 @@
 class HeatsController < ApplicationController
+  before_action :authenticate
+
   respond_to :json
 
   def show
