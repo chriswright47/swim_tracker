@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
   resources :athletes
-  resources :meets, :except => [:edit, :update]
+  resources :meets, :except => [:edit, :update] do
+    member do
+      get 'pdf'
+    end
+  end
   resources :heats, :only => [:show, :update]
 end

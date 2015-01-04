@@ -17,6 +17,15 @@ class Event < ActiveRecord::Base
     Athlete.send(:"active_#{gender}")
   end
 
+  def split_count
+    # how many splits need to be recorded for pdf print
+    if relay
+      1
+    else
+      [distance / 50, 5].min
+    end
+  end
+
   def related_heats
     if relay
       similar_events.reduce(heats) {|memo, event| memo += event.heats}

@@ -6,6 +6,16 @@ class Meet < ActiveRecord::Base
   validates_presence_of :competition_date
 
   def title
-    format('%s %s', competition_date.to_s(:db), opponent.titleize)
+    format(
+      '%s %s',
+      competition_date.to_s(:db), opponent.titleize
+    )
+  end
+
+  def pdf_filename
+    format(
+      '%s.pdf',
+      title.gsub(/\s|-/, '_')
+    )
   end
 end

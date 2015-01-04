@@ -8,6 +8,7 @@ class HeatsController < ApplicationController
   end
 
   def update
+    # TODO: extract this logic maybe?
     heat.swims.destroy_all
 
     heat_params[:swims].each do |index, swim_params|

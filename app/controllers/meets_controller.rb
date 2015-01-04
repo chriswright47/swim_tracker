@@ -9,11 +9,17 @@ class MeetsController < ApplicationController
     meet
   end
 
+  def pdf
+    pdf = MeetPdfGenerator.new(meet: meet).render!
+    send_data pdf, :filename => meet.pdf_filename, :type => 'application/pdf'
+  end
+
   def new
     @meet = Meet.new
   end
 
   def create
+    ## TODO: extract this logic perhaps
     @meet = Meet.create(meet_params)
 
     # create a heat for every event

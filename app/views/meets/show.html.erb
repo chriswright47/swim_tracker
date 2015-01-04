@@ -1,4 +1,8 @@
-<h1><%= @meet.title %></h1>
+<h1>
+  <%= @meet.title %>
+  <a class="btn btn-info" href="<%= pdf_meet_path(@meet) %>">meet pdf <i class="fa fa-cloud-download"></i></a>
+</h1>
+
 
 <div class="row">
   <div class="edit-heat-view"></div>

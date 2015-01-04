@@ -45,6 +45,9 @@ gem 'select2-rails'
 
 gem 'simple_form'
 
+gem 'prawn'
+gem 'prawn-table'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
