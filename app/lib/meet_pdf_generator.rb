@@ -37,7 +37,8 @@ class MeetPdfGenerator
 
   def swim_row(swim, heat, index)
     splits = swim.try(:display_final_time) || Array.new(heat.event.split_count,'')
-    ["#{index % 4 + 1}. #{swim.try(:display_athlete)}", splits].flatten
+    number = heat.event.relay ? index % 4 + 1 : index + 1
+    ["#{number}. #{swim.try(:display_athlete)}", splits].flatten
   end
 
   def add_page_break_if_heat_will_overflow(pdf, heat)
