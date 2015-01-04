@@ -24,7 +24,12 @@ class MeetsController < ApplicationController
 
     # create a heat for every event
     Event.all.each do |event|
-      entry_limit = (params[:meet][:entry_limit] || 3).to_i
+      entry_limit = if event.varsity
+        (params[:meet][:entry_limit] || 3).to_i
+      else
+        8
+      end
+
       @meet.heats.create(
         :event => event,
         :entry_limit => event.relay ? entry_limit * 4 : entry_limit
