@@ -11,4 +11,11 @@ namespace :db do
       Event.create(event_data)
     end
   end
+
+  task :seed_athletes => :environment do
+    require Rails.root.join('lib', 'fixtures', 'athlete_seeds.rb')
+    AthleteSeeds.data.each do |athlete_data|
+      Athlete.find_or_create_by(athlete_data)
+    end
+  end
 end
