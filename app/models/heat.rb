@@ -7,6 +7,8 @@ class Heat < ActiveRecord::Base
 
   accepts_nested_attributes_for :swims
 
+  default_scope { order 'id ASC' }
+
   scope :men, -> { joins(:event).where('events.gender = ?', 'men').order('events.number asc') }
   scope :women, -> { joins(:event).where('events.gender = ?', 'women').order('events.number asc') }
 

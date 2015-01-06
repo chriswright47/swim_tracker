@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   has_many :heats
 
-  default_scope { order(:number) }
+  default_scope { order 'number ASC' }
 
   def display_name
     format(
