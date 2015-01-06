@@ -5,6 +5,8 @@ class Meet < ActiveRecord::Base
   validates_presence_of :opponent
   validates_presence_of :competition_date
 
+  default_scope { order 'competition_date DESC' }
+
   def title
     format(
       '%s %s',
