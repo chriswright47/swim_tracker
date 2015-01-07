@@ -48,7 +48,8 @@ class MeetPdfGenerator
   end
 
   def add_page_break_if_heat_will_overflow(pdf, heat)
-    table_height = heat.entry_limit * 25 + 50
+    row_count = heat.meet.final? ? heat.swims.count : heat.entry_limit
+    table_height = row_count * 25 + 50
     pdf.start_new_page if table_height > pdf.y
   end
 end
