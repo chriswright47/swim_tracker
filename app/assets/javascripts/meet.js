@@ -15,6 +15,7 @@ $(function() {
         placeholder: 'Select an athlete...',
         allowClear: true
       });
+      window.scrollTo(0,0);
     });
   });
 });
