@@ -28,11 +28,17 @@ class MeetPdfGenerator
 
   def table_data(heat)
     data = []
-    heat.entry_limit.times do |index|
-      data << swim_row(heat.swims[index], heat, index)
+    if heat.meet.final?
+      heat.swims.each_with_index do |swim, index|
+        data << swim_row(swim, heat, index)
+      end
+    else
+      heat.entry_limit.times do |index|
+        data << swim_row(heat.swims[index], heat, index)
+      end
     end
 
-    data
+    data.try(:presence) || [['no results']]
   end
 
   def swim_row(swim, heat, index)
@@ -46,12 +52,3 @@ class MeetPdfGenerator
     pdf.start_new_page if table_height > pdf.y
   end
 end
-
-
-# things that might come in handy
-
-# start_new_page
-
-# table stuff
-# cell_1 = make_cell(:content => "foo")
-# table([[cell_1, '', '']])

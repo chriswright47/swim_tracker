@@ -20,4 +20,10 @@ class Meet < ActiveRecord::Base
       title.gsub(/\s|-/, '_')
     )
   end
+
+  def final?
+    heats.any? do |heat|
+      heat.swims.any? { |swim| swim.final_time_ms.present? }
+    end
+  end
 end
