@@ -64,6 +64,12 @@
   number: 21
   gender: 'women'
   varsity: true
+- distance: 100
+  stroke: 'jv medley'
+  relay: false
+  number: 105
+  gender: 'women'
+  varsity: false
 - distance: 50
   stroke: 'jv freestyle'
   relay: false
