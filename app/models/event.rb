@@ -15,6 +15,9 @@ class Event < ActiveRecord::Base
 
   def eligible_athletes
     Athlete.send(:"active_#{gender}")
+      .select  {|a| a.best_swim_for_event(self).try(:final_time_ms) }
+      .sort_by {|a| a.best_swim_for_event(self).try(:final_time_ms)}
+      .| Athlete.send(:"active_#{gender}").all
   end
 
   def split_count
@@ -27,8 +30,8 @@ class Event < ActiveRecord::Base
   end
 
   def related_heats
-    if relay
-      similar_events.reduce(heats) {|memo, event| memo += event.heats}
+    if group = similar_events
+      group.map { |number| Event.find_by_number(number).heats }.flatten
     else
       heats
     end
@@ -37,29 +40,16 @@ class Event < ActiveRecord::Base
   private
 
   def similar_events
-    RELAY_SIMILAR_EVENTS
-      .find { |event| event[:distance] == distance && event[:stroke] == stroke }
-      .fetch(:similar_events)
-      .map { |event_data| Event.where(event_data.merge(:gender => gender)).first }
+    SIMILAR_EVENTS_GROUPS
+      .find { |group| group.include?(self.number) }
   end
 
-  RELAY_SIMILAR_EVENTS = [
-    {
-      :distance => 200,
-      :stroke => 'freestyle',
-      :similar_events => [{:distance => 50, :stroke => 'freestyle', :relay => false}]
-    },
-    {
-      :distance => 400,
-      :stroke => 'freestyle',
-      :similar_events => [{:distance => 100, :stroke => 'freestyle', :relay => false}]
-    },
-    {
-      :distance => 200,
-      :stroke => 'medley',
-      :similar_events => []
-    }
+  SIMILAR_EVENTS_GROUPS = [
+    # 50-free, 200-free-relay, jv-50-free
+    [7,15,107],
+    [8,16,108],
+    # 100-free, 400-free-relay, jv-100-free
+    [11,21,111],
+    [12,22,112]
   ]
-
-
 end
