@@ -14,6 +14,11 @@ class MeetsController < ApplicationController
     send_data pdf, :filename => meet.pdf_filename, :type => 'application/pdf'
   end
 
+  def csv
+    csv = MeetCsvGenerator.new(meet: meet, options: {:col_sep => ','}).render!
+    send_data csv, :filename => meet.csv_filename, :type => 'application/csv'
+  end
+
   def new
     @meet = Meet.new
   end

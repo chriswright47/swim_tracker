@@ -21,6 +21,13 @@ class Meet < ActiveRecord::Base
     )
   end
 
+  def csv_filename
+    format(
+      '%s.csv',
+      title.gsub(/\s|-/, '_')
+    )
+  end
+
   def final?
     heats.any? do |heat|
       heat.swims.any? { |swim| swim.final_time_ms.present? }

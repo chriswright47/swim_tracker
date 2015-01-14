@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :meets, :except => [:edit, :update] do
     member do
       get 'pdf'
+      get 'csv'
     end
   end
   resources :heats, :only => [:show, :update]
